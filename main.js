@@ -1,10 +1,6 @@
-$(document).ready()
+// $(document).ready()
 
 // $(document).scroll(function(e){
- 
-//     alert("you are scrolling!!")
- 
-// });
 
 // var scrollAmount = $(window).scrollTop();
 // console.log(scrollAmount)
@@ -17,22 +13,38 @@ $(document).ready()
 
 // var start;
 
-var start_time = new Date();
+// });
 
-var end_time = new Date();
+var start;
 
-var elapsed_ms = end_time - start_time;
-var seconds = Math.round(elapsed_ms / 1000);
-var minutes = Math.round(seconds / 60);
-var hours = Math.round(minutes / 60);
+$(document).ready(function() {
+  start = Date.getTime();
 
-var sec = TrimSecondsMinutes(seconds);
-var min = TrimSecondsMinutes(minutes);
+  $(window).unload(function() {
+      end = Date.getTime();
+      $.ajax({ 
+        url: "log.php",
+        data: {'timeSpent': end - start}
+      })
+    });
+});
 
-function TrimSecondsMinutes(elapsed) {
-    if (elapsed >= 60)
-        return TrimSecondsMinutes(elapsed - 60);
-    return elapsed;
-}
+// var start_time = new Date();
 
-console.log(trimSeconds`Minutes)
+// var end_time = new Date();
+
+// var elapsed_ms = end_time - start_time;
+// var seconds = Math.round(elapsed_ms / 1000);
+// var minutes = Math.round(seconds / 60);
+// var hours = Math.round(minutes / 60);
+
+// var sec = TrimSecondsMinutes(seconds);
+// var min = TrimSecondsMinutes(minutes);
+
+// function TrimSecondsMinutes(elapsed) {
+//     if (elapsed >= 60)
+//         return TrimSecondsMinutes(elapsed - 60);
+//     return elapsed;
+// }
+
+// console.log(TrimSecondsMinutes);
